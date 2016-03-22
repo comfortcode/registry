@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :items, except: index
+  resources :items, except: :index
   root to: 'public#landing'
 
   # Routes for created views  

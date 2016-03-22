@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <h1><%= "#{@user.first_name} #{@user.last_name} & #{@user.other_first_name} #{@user.other_last_name}" %></h1>
-      <p class="text-center"><%= @user.wedding_date.to_formatted_s(:long) %></p>
+      <p class="text-center"><%#= @user.wedding_date.to_formatted_s(:long) %></p>
       <% if current_user.present? && current_user == @user%>
       <% personal_link = "#{request.host_with_port}/#{@user.link_id.upcase}" %>
       <div class="text-center"> Your Link To Share: <%= personal_link %></div>
@@ -60,5 +60,9 @@
   <% end %>
 <% end %>
 </div>
-<%= render partial: 'fulfillments/new.html.erb' %>
-<%= render partial: 'items/new.html.erb' %>
+
+<% if current_user == @user %>
+  <%= render partial: 'items/new.html.erb' %>
+<% else %>
+  <%= render partial: 'fulfillments/new.html.erb' %>
+<% end %>

@@ -4,7 +4,7 @@
       <div class = "modal-body">
         <div class="container">
           <button type="button" class="close form-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4>1. Buy this item from <a href="#"> <%= Item.find(:item_id) %><span class="label label-default"></span> </a></h4>
+          <h4>1. Buy this item from <a href="#"><span class="label label-default"></span> </a></h4>
           <p>Ship To: <%= "#{@user.street} #{@user.city}, #{@user.state} #{@user.zip}" %></p>
           <h4>2. Submit this form to update their registry:</h4>
       <%= form_for @fulfillment, url: fulfillments_create_path do |f|%>
