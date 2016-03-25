@@ -19,7 +19,8 @@
     </div>
     <div class="form-group">
       <%= f.label :email, "Your Email Address" %>
-      <%= f.email_field :email, class:'form-control', placeholder:'Example@gmail.com', value: params[:email] %>
+      <% email_value = current_user ? current_user.email : params[:email] %>
+      <%= f.email_field :email, class:'form-control', placeholder:'Example@gmail.com', value: email_value %>
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
