@@ -15,6 +15,7 @@
  */
 
 @import url(https://fonts.googleapis.com/css?family=Questrial|Josefin+Sans:400,600);
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
 
 $brand-primary: #c80553;
 $navbar-default-link-color: #27012a;
@@ -36,6 +37,11 @@ body {
 
 *:focus {
   outline: 0 !important;
+}
+
+
+.script {
+  font-family: 'Pacifico', cursive;
 }
 
 /* media="all" */
@@ -72,7 +78,8 @@ html.turbolinks-progress-bar::before {
 
 .btn-action {
     font-size: 20px;
-    margin-bottom:30px;
+    margin-bottom:48px;
+    margin-top: 18px;
     padding: 10px 25px;
 }
 

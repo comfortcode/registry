@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default text-uppercase pueple">
   <div class="container">
     <div class="navbar-header">
-      <%= link_to 'LogoHere', root_path, class: 'navbar-brand' %>
+      <%= link_to 'Register For Anything', root_path, class: 'navbar-brand logo' %>
       <% if current_user && current_user.unseen_fulfillments.count != 0 %>
           <a href="<%=fulfillments_path%>" data-html="true" data-placement="bottom" data-toggle="popover" data-content="Notification 1<br/>Notification 2" data-original-title="Notifications">
               <span class="badge badge-success"><%=current_user.unseen_fulfillments.count%></span>
