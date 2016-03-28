@@ -1,34 +1,36 @@
+<!--  <% if current_user.present? && current_user == @user%>-->
+<!--    <% personal_link = "#{request.host_with_port}/#{@user.link_id.upcase}" %>-->
+<!--    <div class="badge text-center"><i class="glyphicon glyphicon-send"></i> Your Link To Share: <%= personal_link %></div>-->
+<!--  <% end %>-->
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <h1 class="registry-header script"><%= "#{@user.first_name} #{@user.last_name} &#{@user.other_first_name} #{@user.other_last_name}" %></h1>
       <p class="text-center"><%#= @user.wedding_date.to_formatted_s(:long) %></p>
-      <% if current_user.present? && current_user == @user%>
-      <% personal_link = "#{request.host_with_port}/#{@user.link_id.upcase}" %>
-      <div class="text-center"> Your Link To Share: <%= personal_link %></div>
-      <% end %>
       <div class="row">
        <div class="col-md-8 col-md-offset-2">
         <%= render partial: 'scrape_form' %>  
       </div>
     </div>
-  </div>
-<div class="row">
-  <div class="col-md-12 text-right">
-    <div class="form-inline text-left">
-      <div class="form-group">
-        <label>&nbsp;&nbsp;&nbsp;Sort by:</label>
-        <select id="sort-by" class="form-control">
-          <option value="">Select...</option>
-          <option value="price_high" <% if params[:sort_by] == 'price_high'%>selected<% end %>>Price: High To Low</option>
-          <option value="price_low" <% if params[:sort_by] == 'price_low'%>selected<% end %>>Price: Low To High</option>
-          <option value="vendor" <% if params[:sort_by] == 'vendor'%>selected<% end %>>Vendor</option>
-        </select>
-      </div>
-    </div>
-    <br/>
-    </div>
-    </div>
+  </br>
+  </div> <!--row-->
+  <div class="row">
+    <div class="col-md-6 text-right">
+      <div class="form-inline text-left">
+        <div class="form-group">
+          <label>&nbsp;&nbsp;&nbsp;Sort by:</label>
+          <select id="sort-by" class="form-control">
+            <option value="">Select...</option>
+            <option value="price_high" <% if params[:sort_by] == 'price_high'%>selected<% end %>>Price: High To Low</option>
+            <option value="price_low" <% if params[:sort_by] == 'price_low'%>selected<% end %>>Price: Low To High</option>
+            <option value="vendor" <% if params[:sort_by] == 'vendor'%>selected<% end %>>Vendor</option>
+          </select>
+        </div><!--form group-->
+      </div><!--form inline-->
+      </br>
+    </div><!--col-md-6-->
+  </div><!--row-->
+
 <% @items.each do |i| %>
   <div class="col-sm-6 col-md-4">
     <% if i.needed>i.fulfilled %>
@@ -44,7 +46,7 @@
         <span class="item-name"><%= i.name %></span>
         <%= i.store_name %>
       </h3>
-      <p ><%= number_to_currency(i.price)%></p>
+      <p><%= number_to_currency(i.price)%></p>
       <% if current_user == i.user %>
         <%= render partial: 'user_view.html.erb', locals: {i: i} %>
         <% who = "You" %>
@@ -53,13 +55,13 @@
         <% who = "They" %>
       <% end %>
       <p class="color-gray fulfillment-status"><%= "#{who} want: #{i.needed}" %> &bullet; <%= "Number purchased: #{i.fulfilled}" %></p>
-    </div>
-  </div>
+    </div> <!---->
+  </div> <!---->
   <% if i.needed<=i.fulfilled %>
-    </div>
-  <% end %>
+    </div> <!---->
 <% end %>
-</div>
+<% end %>
+</div> <!--container-->
 
 <% if current_user == @user %>
   <%= render partial: 'items/new.html.erb' %>
