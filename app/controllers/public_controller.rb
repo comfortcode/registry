@@ -22,11 +22,11 @@ class PublicController < ApplicationController
     product_url = params[:url]
   
     # before everything see if someone else listed a product with the same link
-    item = Item.where(link: product_url).last
-    if item
-      render json: {:url => product_url, :title => item.name, :price => item.price.to_f, :images => [item.image_url], :found => true }
-      return
-    end
+    # item = Item.where(link: product_url).last
+    # if item
+    #   render json: {:url => product_url, :title => item.name, :price => item.price.to_f, :images => [item.image_url], :found => true }
+    #   return
+    # end
     
     # Fetch and parse HTML document
     html = Nokogiri::HTML(open(product_url, {"User-Agent" => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11"}).read)
@@ -68,10 +68,12 @@ class PublicController < ApplicationController
           # go through them and grab all the ones bigger then 50px by 50px
           el_images.each do |image|
             dimensions = get_image_dimensions(image, css, product_url)
-            if dimensions[0].to_i < 50 || dimensions[1].to_i < 50
+            if dimensions[0].to_i < 84 || dimensions[1].to_i < 84
               html.delete(image)
             else
-              images_size.push([image.attr('src'), dimensions[0].to_i * dimensions[1].to_i])
+              if image.attr('src').index('no_image_available').nil? #  its not a placeholder (bed bath and beyond)
+                images_size.push([image.attr('src'), dimensions[0].to_i * dimensions[1].to_i])
+              end
             end
           end
           

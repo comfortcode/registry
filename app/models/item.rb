@@ -19,11 +19,11 @@ class Item < ActiveRecord::Base
 
     short_link = self.link
     # Remove Intro To HOST
-    dot_index = short_link.index("www.")
+    dot_index = short_link.index(/www[0-9]?\./)
     slash_index = short_link.index("//")
-    if dot_index != nil
-      short_link = short_link.partition("www.")[2]
-    elsif slash_index != nil
+    if dot_index != nil # if there is WWW*...
+      short_link = short_link.partition(/www[0-9]?\./)[2]
+    elsif slash_index != nil # if there isn't, but there is //
       short_link = short_link.partition("//")[2]
     end
 
