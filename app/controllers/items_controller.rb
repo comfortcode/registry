@@ -64,7 +64,7 @@ end
     @item = Item.find(params[:id])
 #     authorize @item
     if @item.destroy
-      flash[:notice] = "\"#{@item.name}\" was deleted successfully from your registry."
+      flash[:notice] = "\"#{@item.name}\" was deleted from your registry."
      else
       flash[:error] = "There was an error deleting the item from your registry."
      end

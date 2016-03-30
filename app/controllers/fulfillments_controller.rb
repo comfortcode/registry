@@ -82,7 +82,7 @@ def pluralize_gift(fulfillment, item)
     if @fulfillment.save
       flash[:notice] = "Thank you! #{couple_names} were informed that you will be buying them #{@fulfillment.quantity} #{gift}"
     else
-      flash[:error] = "There was a problem removing the item that you purchased from the registry. Please try again later."
+      flash[:error] = "There was an error processing your request. Please try again."
     end
   redirect_to :back
   end 
