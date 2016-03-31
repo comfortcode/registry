@@ -76,11 +76,10 @@ def pluralize_gift(fulfillment, item)
     item = Item.find(@fulfillment.item_id)
     item.fulfilled += @fulfillment.quantity
     item.save
-    couple_names = "#{item.user.first_name} & #{item.user.other_first_name}"
 #     gift = pluralize_gift(@fulfillment, item)
     gift = item.name
     if @fulfillment.save
-      flash[:notice] = "Thank you! #{couple_names} were informed that you will be buying them #{@fulfillment.quantity} #{gift}"
+      flash[:notice] = "Thank you! #{item.user.couple_full_names} were informed that you will be buying them #{@fulfillment.quantity} #{gift}"
     else
       flash[:error] = "There was an error processing your request. Please try again."
     end

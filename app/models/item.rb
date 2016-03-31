@@ -17,12 +17,12 @@ class Item < ActiveRecord::Base
 
   def store_name
 
-    short_link = self.link
+    short_link = self.link.upcase
     # Remove Intro To HOST
-    dot_index = short_link.index(/www[0-9]?\./)
+    dot_index = short_link.index(/WWW[0-9]?\./)
     slash_index = short_link.index("//")
     if dot_index != nil # if there is WWW*...
-      short_link = short_link.partition(/www[0-9]?\./)[2]
+      short_link = short_link.partition(/WWW[0-9]?\./)[2]
     elsif slash_index != nil # if there isn't, but there is //
       short_link = short_link.partition("//")[2]
     end

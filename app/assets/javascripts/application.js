@@ -26,13 +26,22 @@ ready = function(){
   $('#newFulfillmentModal').on('show.bs.modal', function (event) {
     // when modal is opened
       var button = $(event.relatedTarget); // Button that triggered the modal
-      var itemName = button.data('item-name');
+      var storeName = button.data('item-store-name');
+      var itemNotes = button.data('item-notes');
+      var affiliateLink = button.data('item-affiliate-link');
       var id = button.data('item-id'); // Extract info from data-* attributes
       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+
       // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
       var modal = $(this);
       modal.find('#fulfillment_item_id').val(id);
-      modal.find('.modal-title b').text(itemName);
+      modal.find('.store-name').text(storeName);
+      if (itemNotes.length == 0) {
+        modal.find('#item-notes-li').hide();        
+      } else {
+        modal.find('#item-notes').text(itemNotes);
+      }        
+      modal.find('#affiliate-link').attr('href', affiliateLink);
     // open new window with link
       var link = button.data('link');
       var width = 620;

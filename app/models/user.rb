@@ -21,7 +21,23 @@ class User < ActiveRecord::Base
   fulfillments
   end 
 
-   protected
+  def couple_first_names
+    names = first_name
+    unless other_first_name.empty?
+      names += " & #{other_first_name}" 
+    end
+    names
+  end
+
+  def couple_full_names
+    names = "#{first_name} #{last_name}"
+    unless other_first_name.empty? && other_last_name.empty?
+      names += " & #{other_first_name} #{other_last_name}"
+    end
+    names    
+  end  
+
+  protected
 
 # Generates a unique 5 character id for the user's registry...
    def generate_link
