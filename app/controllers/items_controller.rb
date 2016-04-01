@@ -25,7 +25,6 @@ class ItemsController < ApplicationController
      else
         @items = []
      end
-      
 end
 #     authorize @items
 
