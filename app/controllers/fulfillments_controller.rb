@@ -46,9 +46,9 @@ end
    gift = pluralize_gift(@fulfillment, item)
    gift = item.name   
   if @fulfillment.save
-    flash[:notice] = "#{@fulfillment.quantity} #{gift} #{gift_verb(@fulfillment)} removed from your registry."
+    flash[:notice] = "#{@fulfillment.quantity} #{gift} #{gift_verb(@fulfillment)} marked as purchased."
    else
-    flash[:error] = "There was an error. #{@fulfillment.quantity} #{gift} #{gift_verb} not removed from your registry. Please try again later."
+    flash[:error] = "There was an error. #{@fulfillment.quantity} #{gift} #{gift_verb} not marked as purchased. Please try again later."
    end
   redirect_to user_registry_path(current_user.link_id)
 end  
