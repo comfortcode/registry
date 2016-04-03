@@ -6,7 +6,8 @@ class Item < ActiveRecord::Base
   validates :price, presence: true
   validates :needed, presence: true
   validates :user_id, presence: true
-  default_scope { order('created_at DESC') }
+  # default_scope { order('created_at DESC') }
+  scope :by_created, -> {order('created_at DESC')} 
   scope :by_fulfilled, -> { order("needed>fulfilled DESC") }
   scope :by_price_high, -> { order("price DESC") }
   scope :by_price_low, -> { order("price ASC") }

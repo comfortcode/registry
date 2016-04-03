@@ -12,15 +12,15 @@ class ItemsController < ApplicationController
     sort_by = params[:sort_by]
     if @user.items.any?
       if sort_by == "price_high"
-        @items = @user.items.by_fulfilled.by_price_high
+        @items = @user.items.by_fulfilled.by_price_high.by_created
       elsif sort_by == "price_low"
-        @items = @user.items.by_fulfilled.by_price_low
+        @items = @user.items.by_fulfilled.by_price_low.by_created
       elsif sort_by == "vendor"
         fulfilled_items=@user.items.fulfilled.sort { |a,b| a.store_name.downcase <=> b.store_name.downcase }
         unfulfilled_items=@user.items.unfulfilled.sort { |a,b| a.store_name.downcase <=> b.store_name.downcase }
         @items= unfulfilled_items+fulfilled_items
       else 
-        @items = @user.items.by_fulfilled
+        @items = @user.items.by_fulfilled.by_created
       end 
      else
         @items = []
