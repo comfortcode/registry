@@ -65,7 +65,7 @@ ready = function() {
       $.ajax({
         method:"GET",
         url: "/scrape?url="+url,
-        timeout: 3000000 //take out 2 zeros and change number
+        timeout: 10000 
       })
       .done(function(data){
         // save the data to a cache if at least the title was found
