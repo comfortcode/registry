@@ -4,4 +4,4 @@ RegisterForAnything.com is an application where users can add any product on the
 
 Live here: [www.registerforanything.com](http://www.registerforanything.com/)
 
-Demo: User: couple@example.com, Pass: helloworld
+Demo: User: couple@example.com, Password: helloworld
