@@ -5,22 +5,23 @@
           <!--<button type="button" class="close form-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
           <h3 id="step-one-header">Step #1: Buy this gift</h3>
           <!--<span class="store-name">Store</span>-->
-          <ol>
-            <li>
+          <ul>
+            <li class="bullet" id="item-notes-li">
+              <%=@user.couple_first_names%> would like: <span id="item-notes">Notes</span>
+            </li>
+            <li class="bullet" id="address-li">
+              Ship this gift to:</br>
+              <span> <%= "#{@user.couple_full_names}"%></%></span></br>            
+              <span> <%= "#{@user.street}"%></%></span></br>
+              <span> <%= "#{@user.city}, #{@user.state} #{@user.zip}"%></%></span></br>
+            </li>
+            <li class="bullet">
               <a class="label label-primary" id="affiliate-link" href="#" target="_blank">Click Here</a>
                to be directed to the
               <span class="store-name">Store</span>
               product webpage if it didn't already open.
             </li>
-            <li>Ship this gift to:</br>
-              <span> <%= "#{@user.couple_full_names}"%></%></span></br>            
-              <span> <%= "#{@user.street}"%></%></span></br>
-              <span> <%= "#{@user.city}, #{@user.state} #{@user.zip}"%></%></span></br>
-            </li>
-            <li id="item-notes-li">
-              <%=@user.couple_first_names%> would like: <span id="item-notes">Notes</span>
-            </li>
-          </ol>
+          </ul>
           <h3>Step #2: Submit this form to update their registry</h3>
       <%= form_for @fulfillment, url: fulfillments_create_path do |f|%>
         <div class="form-group">

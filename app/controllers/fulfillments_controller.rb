@@ -44,7 +44,7 @@ end
    item.fulfilled += @fulfillment.quantity
    item.save
    gift = pluralize_gift(@fulfillment, item)
-   gift = item.name   
+  # gift = item.name   
   if @fulfillment.save
     flash[:notice] = "#{@fulfillment.quantity} #{gift} #{gift_verb(@fulfillment)} marked as purchased."
    else
@@ -76,8 +76,7 @@ def pluralize_gift(fulfillment, item)
     item = Item.find(@fulfillment.item_id)
     item.fulfilled += @fulfillment.quantity
     item.save
-#     gift = pluralize_gift(@fulfillment, item)
-    gift = item.name
+    gift = pluralize_gift(@fulfillment, item)
     if @fulfillment.save
       flash[:notice] = "Thank you! #{item.user.couple_full_names} were informed that you will be buying them #{@fulfillment.quantity} #{gift}"
     else

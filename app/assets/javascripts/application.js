@@ -40,7 +40,10 @@ ready = function(){
         modal.find('#item-notes-li').hide();        
       } else {
         modal.find('#item-notes').text(itemNotes);
-      }        
+      }
+      if (itemNotes.length == 0) {
+        modal.find('#address-li').hide();        
+      }
       modal.find('#affiliate-link').attr('href', affiliateLink);
     // open new window with link
       var link = button.data('link');
