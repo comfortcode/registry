@@ -54,11 +54,9 @@ class Item < ActiveRecord::Base
             character = "?"
           end 
           affiliate_link = self.link + character + p[1]
-        
         elsif p[2] == "link"
           affiliate_link = p[1].sub! '{link}', self.link
         end 
-        
         break
       end 
     end 

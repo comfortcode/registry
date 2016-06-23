@@ -5,11 +5,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <h1 class="registry-header script"><%= "#{@user.first_name} #{@user.last_name} &#{@user.other_first_name} #{@user.other_last_name}" %></h1>
+      <h1 class="registry-header script"><%= @user.couple_full_names %></h1>
       <p class="text-center"><%#= @user.wedding_date.to_formatted_s(:long) %></p>
       <div class="row">
        <div class="col-md-8 col-md-offset-2">
-        <%= render partial: 'scrape_form' %>  
+        <%= render partial: 'scrape_form' if current_user %>  
       </div>
     </div>
   </br>

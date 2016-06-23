@@ -40,11 +40,11 @@ class User < ActiveRecord::Base
   protected
 
 # Generates a unique 5 character id for the user's registry...
-   def generate_link
-          self.link_id = loop do
-             random_id = SecureRandom.urlsafe_base64(5, false)
-             break random_id unless self.class.exists?(link_id: random_id)
-          end
-   end
+  def generate_link
+        self.link_id = loop do
+           random_id = SecureRandom.urlsafe_base64(5, false)
+           break random_id unless self.class.exists?(link_id: random_id)
+        end
+  end
   
 end
