@@ -2,6 +2,7 @@
 <!--    <% personal_link = "#{request.host_with_port}/#{@user.link_id.upcase}" %>-->
 <!--    <div class="badge text-center"><i class="glyphicon glyphicon-send"></i> Your Link To Share: <%= personal_link %></div>-->
 <!--  <% end %>-->
+
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
@@ -31,36 +32,38 @@
     </div><!--col-md-6-->
   </div><!--row-->
 
-<% @items.each do |i| %>
-  <div class="col-sm-6 col-md-4">
-    <% if i.needed>i.fulfilled %>
-      <div class="item-box">
-    <% else %>
-      <div class="item-box">
-        <div class="fulfilled-caption"><span class="glyphicon glyphicon-ok
-          "></span>&nbsp;&nbsp;Purchased</div>
+  <% @items.each do |i| %>
+    <div class="col-sm-6 col-md-4">
+      <div class="item-box">    
+      <% if i.needed<=i.fulfilled %>
+        <div class="fulfilled-caption"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Purchased</div>
           <div class="item-fulfilled">
-    <% end %>
-            <%= link_to image_tag(i.image_url, class:'gift-image'), i.affiliate_link, target: '_blank' %>
-      <h3 class="text-uppercase">
-        <span class="item-name"><%= i.name %></span>
-        <%= i.store_name %>
-      </h3>
-      <p><%= number_to_currency(i.price)%></p>
-      <% if current_user == i.user %>
-        <%= render partial: 'user_view.html.erb', locals: {i: i} %>
-        <% who = "You" %>
-      <% else %>
-        <%= render partial: 'public_view.html.erb', locals: {i: i} %>         
-        <% who = "They" %>
       <% end %>
-      <p class="color-gray fulfillment-status"><%= "#{who} want: #{i.needed}" %> &bullet; <%= "Number purchased: #{i.fulfilled}" %></p>
-    </div> <!---->
-  </div> <!---->
-  <% if i.needed<=i.fulfilled %>
-    </div> <!---->
-<% end %>
-<% end %>
+      
+          <%= link_to image_tag(i.image_url, class:'gift-image'), i.affiliate_link, target: '_blank' %>
+          <h3 class="text-uppercase">
+            <span class="item-name"><%= i.name %></span>
+            <%= i.store_name %>
+          </h3>
+    
+          <p><%= number_to_currency(i.price)%></p>
+    
+          <% if current_user == i.user %>
+            <%= render partial: 'user_view.html.erb', locals: {i: i} %>
+            <% who = "You" %>
+          <% else %>
+            <%= render partial: 'public_view.html.erb', locals: {i: i} %>         
+            <% who = "They" %>
+          <% end %>
+    
+          <p class="color-gray fulfillment-status"><%= "#{who} want: #{i.needed}" %> &bullet; <%= "Number purchased: #{i.fulfilled}" %></p>
+        </div>
+      </div>
+    <% if i.needed<=i.fulfilled %>
+    </div>
+    <% end %>
+  
+  <% end %> <!--loop-->
 </div> <!--container-->
 
 <% if current_user == @user %>
