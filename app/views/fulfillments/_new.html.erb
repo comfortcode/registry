@@ -25,16 +25,16 @@
           <h3>Step #2: Submit this form to update their registry</h3>
       <%= form_for @fulfillment, url: fulfillments_create_path do |f|%>
         <div class="form-group">
+        <%= f.label :quantity, "How many of this gift did you buy for #{@user.couple_first_names}?" %>
+          <%= f.number_field :quantity, class: "form-control" %>
+        </div>
+        <div class="form-group">
           <%= f.label :buyer_name, 'Your Name' %>
           <%= f.text_field :buyer_name, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :buyer_email, 'Your Email' %>
           <%= f.email_field :buyer_email, class: "form-control" %>
-        </div>
-        <div class="form-group">
-        <%= f.label :quantity, "How many of this gift did you buy for #{@user.couple_first_names}?" %>
-          <%= f.number_field :quantity, class: "form-control" %>
         </div>
           <%#= f.label :message, "If you want, you can type a message to #{@user.first_name} & #{@user.other_first_name} here:" %>
           <%#= f.text_area :message %>
